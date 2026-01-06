@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickMart - Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="brand">
+                <span class="brand-icon">⚡</span>
+                <span class="brand-name">QuickMart</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#" class="active"><span class="icon">🏠</span> Home</a></li>
+                <li><a href="../order/order.html"><span class="icon">📦</span> Orders</a></li>
+                <li><a href="../product/product.html"><span class="icon">🏷️</span> Products</a></li>
+                <li><a href="#" id="logoutBtn"><span class="icon">🚪</span> Logout</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <div class="search-bar">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="Search...">
+                </div>
+                <div class="top-actions">
+                    <button class="icon-btn notification-btn">🔔</button>
+                    <div class="user-profile">
+                        <div class="avatar">AM</div>
+                        <div class="user-info">
+                            <span class="user-name">Admin</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-title">Total Sales</span>
+                        <span class="stat-trend positive">↗</span>
+                    </div>
+                    <div class="stat-value" id="totalSales">$0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-title">New Orders</span>
+                        <span class="stat-trend positive">↗</span>
+                    </div>
+                    <div class="stat-value" id="newOrdersCount">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-title">Users</span>
+                        <span class="stat-trend positive">↗</span>
+                    </div>
+                    <div class="stat-value" id="usersCount">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-title">Refunds</span>
+                        <span class="stat-trend negative">↘</span>
+                    </div>
+                    <div class="stat-value" id="refundsCount">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-title">Total Products</span>
+                        <span class="stat-trend positive">📦</span>
+                    </div>
+                    <div class="stat-value" id="totalProductsCount">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-title">Low Stock</span>
+                        <span class="stat-trend negative">⚠️</span>
+                    </div>
+                    <div class="stat-value" id="lowStockCount">0</div>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="charts-section">
+                <div class="chart-card sales-chart">
+                    <h3>Sales Chart</h3>
+                    <div class="chart-placeholder">
+                        <canvas id="salesChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card top-products">
+                    <h3>Top Products</h3>
+                    <div class="product-progress-list" id="topProductsList">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Orders Table -->
+            <div class="recent-orders-section">
+                <h3>Recent Orders Table</h3>
+                <div class="table-responsive">
+                    <table class="recent-orders-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>CUSTOMER</th>
+                                <th>STATUS</th>
+                                <th>AMOUNT</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recentOrdersBody">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,464 @@
+/* Inheriting base styles from dashboard.css via link in HTML, adding extras here */
+
+/* Actions & Filters */
+.filters-section {
+    display: flex;
+    justify-content: flex-end;
+    /* Move filters to right */
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+/* Re-using dashboard.css .btn-primary, just ensuring it has correct spacing */
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: #4b4dcf;
+    /* Slightly darker than #5d5fef */
+}
+
+/* Filter box */
+.filter-box select {
+    padding: 10px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background-color: white;
+    cursor: pointer;
+    font-family: inherit;
+    color: var(--text-main);
+    outline: none;
+}
+
+/* Table Styles */
+.table-card {
+    background: var(--card-bg);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    text-align: left;
+}
+
+.data-table th,
+.data-table td {
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.data-table th {
+    background-color: #f8f9fa;
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+.data-table tr:last-child td {
+    border-bottom: none;
+}
+
+.data-table tr:hover {
+    background-color: #fcfcfc;
+}
+
+/* Badges */
+.badge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.badge.sell {
+    background-color: #e6f4ea;
+    color: #1e7e34;
+}
+
+.badge.purchase {
+    background-color: #e7f1ff;
+    color: #0056b3;
+}
+
+.status-completed {
+    color: var(--success-color);
+    font-weight: 500;
+}
+
+/* Pagination */
+.pagination {
+    padding: 15px 20px;
+    border-top: 1px solid #eee;
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    backdrop-filter: blur(2px);
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: var(--radius-md);
+    width: 100%;
+    max-width: 500px;
+    box-shadow: var(--shadow-md);
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.close-modal {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--text-muted);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: var(--radius-md);
+    font-family: inherit;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.form-group.half {
+    flex: 1;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.btn-cancel {
+    background: none;
+    border: 1px solid #ddd;
+    padding: 10px 20px;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    color: var(--text-main);
+}
+
+.btn-cancel:hover {
+    background-color: #f8f9fa;
+}
+
+/* Status Badges */
+.status-badge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.status-badge.pending {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.status-badge.confirmed {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+/* Confirm Button */
+.action-btn.confirm-btn {
+    background: #28a745;
+    color: white;
+}
+
+.action-btn.confirm-btn:hover {
+    background: #218838;
+}
+
+/* Multi-Item Order Styles */
+.modal-large {
+    max-width: 700px;
+}
+
+.order-items-section {
+    margin: 20px 0;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: var(--radius-md);
+}
+
+.items-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.items-header label {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.btn-add-item {
+    background: var(--success-color);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-size: 13px;
+    transition: background 0.2s;
+}
+
+.btn-add-item:hover {
+    background: #1e7e34;
+}
+
+.order-items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.order-item-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    padding: 10px;
+    border-radius: var(--radius-md);
+    border: 1px solid #e0e0e0;
+}
+
+.item-product {
+    flex: 2;
+}
+
+.item-product select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.item-qty {
+    flex: 0.7;
+}
+
+.item-qty input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.item-price {
+    flex: 1;
+}
+
+.item-price input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.item-subtotal {
+    flex: 0.8;
+    text-align: right;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.btn-remove-item {
+    background: var(--danger-color);
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+.btn-remove-item:hover {
+    background: #c82333;
+}
+
+.order-total {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 2px solid #ddd;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+#orderTotal {
+    color: var(--primary-color);
+}
+
+/* Action buttons in table */
+.action-btn {
+    padding: 5px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    margin-right: 5px;
+}
+
+.action-btn.edit-btn {
+    background: #e7f1ff;
+    color: #0056b3;
+}
+
+.action-btn.edit-btn:hover {
+    background: #cce0ff;
+}
+
+.action-btn.view-btn:hover {
+    background-color: #e0e0e0;
+}
+
+/* Confirmation Details Styles */
+.confirm-details {
+    padding: 10px;
+}
+
+.order-summary-header {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: var(--radius-md);
+    border: 1px solid #eee;
+    margin-bottom: 20px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.summary-row:last-child {
+    margin-bottom: 0;
+}
+
+.alert-box {
+    padding: 12px;
+    border-radius: var(--radius-md);
+    margin-top: 15px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.alert-box.warning {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.alert-box.warning::before {
+    content: "⚠️";
+}
+
+/* Cancel Button */
+.action-btn.cancel-btn {
+    background: #dc3545;
+    color: white;
+}
+
+.action-btn.cancel-btn:hover {
+    background: #c82333;
+}
+
+/* Cancelled Status */
+.status-badge.cancelled {
+    background-color: #f8d7da;
+    color: #721c24;
+    text-decoration: line-through;
+}

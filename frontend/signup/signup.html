@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickMart - Create Account</title>
+    <link rel="stylesheet" href="signup.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="signup-container">
+        <div class="signup-card">
+            <div class="brand">
+                <span class="brand-icon">⚡</span>
+                <span class="brand-name">QuickMart</span>
+            </div>
+
+            <div class="header">
+                <h2>Create Account</h2>
+                <p>Join us to start shopping</p>
+            </div>
+
+            <form id="signupForm" action="#" method="POST" novalidate>
+                <div class="form-group">
+                    <label for="staff_id">Staff ID</label>
+                    <input type="text" id="staff_id" name="staff_id" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="fullname">Full Name</label>
+                    <input type="text" id="fullname" name="fullname" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number (Optional)</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="password-input">
+                        <input type="password" id="password" name="password" required>
+                        <span class="toggle-password">👁️</span>
+                    </div>
+                    <span class="hint-text">*At least 6 characters</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirm_password">Confirm Password</label>
+                    <div class="password-input">
+                        <input type="password" id="confirm_password" name="confirm_password" required>
+                        <span class="toggle-password">👁️</span>
+                    </div>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms">I agree to the <a href="#">Terms & Privacy Policy</a></label>
+                </div>
+
+                <button type="submit" class="btn-submit">CREATE ACCOUNT</button>
+
+                <div class="divider">
+                    <span>OR</span>
+                </div>
+
+                <div class="social-login">
+                    <button type="button" class="btn-social google">
+                        <span class="icon">G</span> Continue with Google
+                    </button>
+                    <button type="button" class="btn-social facebook">
+                        <span class="icon">f</span> Continue with Facebook
+                    </button>
+                </div>
+
+                <div class="footer-link">
+                    <p>Already have an account? <a href="../login/login.html">[ Login ]</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="signup.js"></script>
+</body>
+
+</html>

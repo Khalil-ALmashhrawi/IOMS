@@ -1,0 +1,49 @@
+/* Inherits basic styles from dashboard.css and order.css */
+
+/* Action Buttons - aligned with order.js styles */
+.action-btn {
+    padding: 5px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    margin-right: 5px;
+    transition: background-color 0.2s;
+}
+
+.edit-btn {
+    background: #e7f1ff;
+    color: #0056b3;
+}
+
+.edit-btn:hover {
+    background: #cce0ff;
+}
+
+.delete-btn {
+    background: #ffe6e6;
+    /* Lighter red */
+    color: #dc3545;
+}
+
+.delete-btn:hover {
+    background: #f8d7da;
+}
+
+/* Status Badges */
+.badge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.badge.normal {
+    background-color: #e6f4ea;
+    color: #1e7e34;
+}
+
+.badge.low-stock {
+    background-color: #fff5f5;
+    color: #dc3545;
+}

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickMart - Orders</title>
+    <link rel="stylesheet" href="../dashboard/dashboard.css">
+    <link rel="stylesheet" href="order.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="brand">
+                <span class="brand-icon">⚡</span>
+                <span class="brand-name">QuickMart</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../dashboard/dashboard.html"><span class="icon">🏠</span> Home</a></li>
+                <li><a href="#" class="active"><span class="icon">📦</span> Orders</a></li>
+                <li><a href="../product/product.html"><span class="icon">🏷️</span> Products</a></li>
+                <li><a href="#" id="logoutBtn"><span class="icon">🚪</span> Logout</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="search-bar">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="searchInput" placeholder="Search orders...">
+                </div>
+
+                <div class="top-actions">
+                    <button id="createOrderBtn" class="btn-primary"><span>+</span> Create Order</button>
+                    <button class="icon-btn notification-btn">🔔</button>
+                    <div class="user-profile">
+                        <div class="avatar">SM</div>
+                        <div class="user-info">
+                            <span class="user-name">Staff Member</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Filters Section (Moved below top bar for cleaner layout) -->
+            <div class="filters-section" style="margin-top: 20px;">
+                <div class="filter-box">
+                    <select id="typeFilter">
+                        <option value="all">All Types</option>
+                        <option value="Sell">Sell</option>
+                        <option value="Purchase">Purchase</option>
+                    </select>
+                </div>
+                <!-- Original search box removed as we promoted it to Top Bar -->
+            </div>
+
+            <!-- Orders Table Card -->
+            <div class="table-card">
+                <div class="table-responsive">
+                    <table class="data-table" id="ordersTable">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Products</th>
+                                <th>Type</th>
+                                <th>Total Items</th>
+                                <th>Customer/Supplier</th>
+                                <th>Date</th>
+                                <th>Staff</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ordersTableBody">
+                            <!-- Rows will be populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pagination">
+                    <span id="showingText">Showing 0 orders</span>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Create/Edit Order Modal -->
+    <div class="modal-overlay" id="orderModal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2 id="modalTitle">Create New Order</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="orderForm">
+                <input type="hidden" id="orderId">
+
+                <div class="form-row">
+                    <div class="form-group half">
+                        <label for="orderType">Order Type</label>
+                        <select id="orderType" required>
+                            <option value="Sell">Sell</option>
+                            <option value="Purchase">Purchase</option>
+                        </select>
+                    </div>
+                    <div class="form-group half">
+                        <label for="orderDate">Date</label>
+                        <input type="date" id="orderDate" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="entityName">Customer / Supplier Name</label>
+                    <input type="text" id="entityName" placeholder="e.g. John Doe" required>
+                </div>
+
+                <!-- Order Items Section -->
+                <div class="order-items-section">
+                    <div class="items-header">
+                        <label>Order Items</label>
+                        <button type="button" id="addItemBtn" class="btn-add-item">+ Add Item</button>
+                    </div>
+                    <div id="orderItemsList" class="order-items-list">
+                        <!-- Items will be added here dynamically -->
+                    </div>
+                    <div class="order-total">
+                        <span>Total: </span>
+                        <span id="orderTotal">$0.00</span>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn-cancel close-modal">Cancel</button>
+                    <button type="submit" class="btn-primary" id="submitOrderBtn">Create Order</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Product Selector Template -->
+    <template id="orderItemTemplate">
+        <div class="order-item-row" data-index="">
+            <div class="item-product">
+                <select class="product-select" required>
+                    <option value="">Select Product</option>
+                </select>
+            </div>
+            <div class="item-qty">
+                <input type="number" class="item-quantity" min="1" value="1" placeholder="Qty" required>
+            </div>
+            <div class="item-price">
+                <input type="number" class="item-price-input" step="0.01" min="0" placeholder="Price" required>
+            </div>
+            <div class="item-subtotal">
+                <span class="subtotal-value">$0.00</span>
+            </div>
+            <button type="button" class="btn-remove-item">✕</button>
+        </div>
+    </template>
+
+    <!-- Confirmation Details Modal -->
+    <div class="modal-overlay" id="confirmModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Confirm Order Details</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="confirm-details">
+                <div class="order-summary-header">
+                    <div class="summary-row">
+                        <span>Order ID:</span>
+                        <strong id="confOrderId"></strong>
+                    </div>
+                    <div class="summary-row">
+                        <span>Date:</span>
+                        <span id="confOrderDate"></span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Type:</span>
+                        <span id="confOrderType" class="badge"></span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Customer/Supplier:</span>
+                        <strong id="confPartyName"></strong>
+                    </div>
+                </div>
+
+                <div class="table-responsive" style="margin: 20px 0;">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Qty</th>
+                                <th>Price</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody id="confItemsList">
+                            <!-- Items will be populated here -->
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3" style="text-align: right; font-weight: bold;">Grand Total:</td>
+                                <td style="font-weight: bold; color: var(--primary-color);" id="confGrandTotal"></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+                <div class="alert-box warning">
+                    Please review the details carefully. This action cannot be undone.
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-cancel close-modal">Back</button>
+                <button type="button" class="btn-primary" id="finalConfirmBtn"
+                    style="background-color: var(--success-color);">Confirm Order</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="order.js"></script>
+</body>
+
+</html>
